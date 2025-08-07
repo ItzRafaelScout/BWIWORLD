@@ -43,8 +43,8 @@ function sendWebhookMessage(name, message, avatar = DEFAULT_AVATAR) {
 }
 
 // Main message function
-function say(name, message) {
-    sendWebhookMessage(name, message);
+function say(name, message, pfp) {
+    sendWebhookMessage(name, message, pfp);
 }
 
 // User join notification
