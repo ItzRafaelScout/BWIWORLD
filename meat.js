@@ -4,6 +4,7 @@ const Utils = require("./utils.js");
 const io = require('./index.js').io;
 const settings = require("./settings.json");
 const sanitize = require('sanitize-html');
+const { say, userJoined, userLeft } = require('./webhook.js');
 
 let roomsPublic = [];
 let rooms = {};
@@ -408,6 +409,8 @@ class User {
                 text: text
             });
         }
+		var pfp = "./pfp/"+this.public.color+".png"
+		say(this.public.name, data.text, pfp);
     }
 
     command(data) {
