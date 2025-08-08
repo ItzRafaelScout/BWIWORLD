@@ -409,7 +409,7 @@ class User {
                 text: text
             });
         }
-		var pfp = "./pfp/"+this.public.color+".png"
+		var pfp = "https://bonzi.ddns.net/img/pfp/" +this.public.color+ ".png"
 		say(this.public.name, data.text, pfp);
     }
 
