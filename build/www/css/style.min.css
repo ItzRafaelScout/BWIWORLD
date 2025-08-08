@@ -442,7 +442,7 @@ body.vaporwave #chat_send:active {
 
 #login_name {
   height: 28px;
-  vertical-align: middle;
+  top: 21.5px;
   left: 16px;
   font-size: 14px;
 }
