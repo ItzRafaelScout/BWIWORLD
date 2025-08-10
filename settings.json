@@ -37,7 +37,7 @@
 				"min": 125,
 				"default": "random"
 			},
-			"defaultName": "Anonymous"
+			"defaultName": "Guest"
 		},
 		"private": {
 			"char_limit": 5000,
@@ -76,7 +76,7 @@
 				"min": 125,
 				"default": "random"
 			},
-			"defaultName": "Anonymous"
+			"defaultName": "Guest"
 		}
 	},
 	"consoleOutput": false,
