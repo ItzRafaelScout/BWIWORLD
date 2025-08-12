@@ -137,23 +137,23 @@ let userCommands = {
     },
 "godmode": function(word) {
     let success = word == this.room.prefs.godword;
-	if (this.room.prefs.godword.includes(word)) {
+	if (settings.godword.indexOf(word) == -1)
+    return; 
         if (success) this.private.runlevel = 2;
         log.info.log('debug', 'godword', {
             guid: this.guid,
             success: success
-        });
-	}
+	});
 },
 "modmode": function(word) {
     let success = word == this.room.prefs.modword;
-	if (this.room.prefs.modword.includes(word)) {
+	if (settings.modword.indexOf(word) == -1)
+    return; 
         if (success) this.private.runlevel = 1;
         log.info.log('debug', 'modword', {
             guid: this.guid,
             success: success
         });
-	}
 },
     "sanitize": function() {
 	    if(this.private.runlevel<1){
