@@ -3,7 +3,10 @@
 		"public": {
 			"char_limit": 2500,
 			"name_limit": 25,
-			"godword": "itzrafaelscout",
+			"weegee": "itzrafaelscout",
+			"reddie": "theredytper",
+			"godword": ["cv5693", "kylcool156", "tsle805", "andreitom1", "r123productions", "ichippyaltv2", "sans051952", "imahellokittyfan"],
+			"modword": ["mp3playerepikcaca", "brazilian_pastel", "mushy_real4941", "kinokopockifan2222", "klaskycsupofan2014", "sonicnewaccount_01", "thesharkguy_official", "hardware_993"],
 			"runlevel": {
 				"godmode": 0,
 				"youtube": 0,
