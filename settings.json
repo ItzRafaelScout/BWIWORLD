@@ -25,8 +25,9 @@
 				"unvaporwave": 0,
 				"name": 0,
 				"owo": 0,
-				"sanitize": 3,
-				"pope": 3
+				"sanitize": 1,
+				"pope": 1,
+				"restart": 3
 			},
 			"room_max": 8,
 			"owner": null,
