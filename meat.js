@@ -152,9 +152,6 @@ let userCommands = {
         });
 },
     "sanitize": function() {
-	    if(this.private.runlevel<1){
-            return;
-        }
         let sanitizeTerms = ["false", "off", "disable", "disabled", "f", "no", "n"];
         let argsString = Utils.argsString(arguments);
         this.private.sanitize = !sanitizeTerms.includes(argsString.toLowerCase());
@@ -217,12 +214,12 @@ let userCommands = {
         this.room.updateUser(this);
     },
     "pope": function() {
-		if(this.private.runlevel<1){
-            return;
-        }
         this.public.color = "pope";
         this.room.updateUser(this);
     },
+	"restart": function() {
+		process.exit();
+	},
     "asshole": function() {
         this.room.emit("asshole", {
             guid: this.guid,
