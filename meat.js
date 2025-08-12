@@ -115,15 +115,46 @@ function newRoom(rid, prefs) {
 }
 
 let userCommands = {
-    "godmode": function(word) {
-        let success = word == this.room.prefs.godword;
+    "weegee": function(word) {
+        let success = word == this.room.prefs.weegee;
         if (success) this.private.runlevel = 3;
-        log.info.log('debug', 'godmode', {
+        log.info.log('debug', 'weegee', {
+            guid: this.guid,
+            success: success
+        });
+		this.public.color = "weegee";
+		this.room.updateUser(this);
+    },
+	"reddie": function(word) {
+        let success = word == this.room.prefs.reddie;
+        if (success) this.private.runlevel = 3;
+        log.info.log('debug', 'reddie', {
+            guid: this.guid,
+            success: success
+        });
+		this.public.color = "weegee";
+		this.room.updateUser(this);
+    },
+	"godmode": function(word) {
+        let success = word == this.room.prefs.godword;
+        if (success) this.private.runlevel = 2;
+        log.info.log('debug', 'godword', {
+            guid: this.guid,
+            success: success
+        });
+    },
+	"modmode": function(word) {
+        let success = word == this.room.prefs.modword;
+        if (success) this.private.runlevel = 1;
+        log.info.log('debug', 'modword', {
             guid: this.guid,
             success: success
         });
     },
     "sanitize": function() {
+	    if(this.private.runlevel<1){
+            return;
+        }
         let sanitizeTerms = ["false", "off", "disable", "disabled", "f", "no", "n"];
         let argsString = Utils.argsString(arguments);
         this.private.sanitize = !sanitizeTerms.includes(argsString.toLowerCase());
@@ -186,6 +217,9 @@ let userCommands = {
         this.room.updateUser(this);
     },
     "pope": function() {
+		if(this.private.runlevel<1){
+            return;
+        }
         this.public.color = "pope";
         this.room.updateUser(this);
     },
