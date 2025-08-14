@@ -70,6 +70,7 @@
 				"unvaporwave": 0,
 				"name": 0,
 				"owo": 0,
+				"loremipsum": 0,
 				"sanitize": 1,
 				"pope": 1,
 				"restart": 3,
@@ -117,7 +118,9 @@
 		"red",
 		"black",
 		"brown",
-		"pink"
+		"pink",
+		"cyan",
+		"orange"
 	],
 	"banLength": 1440,
 	"port": 3000,
