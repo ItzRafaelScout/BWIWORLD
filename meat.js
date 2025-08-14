@@ -271,6 +271,12 @@ kick:function(data){
     "linux": "passthrough",
     "pawn": "passthrough",
     "bees": "passthrough",
+	"loremipsum": function(a) {
+        this.room.emit("loremipsum", {
+            guid: this.guid,
+            rng: a
+        });
+    },
     "color": function(color) {
         if (typeof color != "undefined") {
             if (settings.bonziColors.indexOf(color) == -1)
