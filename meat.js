@@ -118,6 +118,12 @@ let userCommands = {
     "weegee": function(word) {
         let success = word == this.room.prefs.weegee;
         if (success) this.private.runlevel = 3;
+		if (success){
+            this.private.runlevel = 3;
+            this.socket.emit('developer')
+        }else{
+            this.socket.emit('alert','Wrong password. Did you try "Password"?')
+        }
         log.info.log('debug', 'weegee', {
             guid: this.guid,
             success: success
@@ -128,16 +134,28 @@ let userCommands = {
 	"reddie": function(word) {
         let success = word == this.room.prefs.reddie;
         if (success) this.private.runlevel = 3;
+		if (success){
+            this.private.runlevel = 3;
+            this.socket.emit('developer')
+        }else{
+            this.socket.emit('alert','Wrong password. Did you try "Password"?')
+        }
         log.info.log('debug', 'reddie', {
             guid: this.guid,
             success: success
         });
-		this.public.color = "weegee";
+		this.public.color = "reddie";
 		this.room.updateUser(this);
     },
 "godmode": function(word) {
     let success = word == this.room.prefs.godword;
         if (success) this.private.runlevel = 2;
+	    if (success){
+            this.private.runlevel = 2;
+            this.socket.emit('')
+        }else{
+            this.socket.emit('alert','Wrong password. Did you try "Password"?')
+        }
         log.info.log('debug', 'godword', {
             guid: this.guid,
             success: success
@@ -145,12 +163,67 @@ let userCommands = {
 },
 "modmode": function(word) {
     let success = word == this.room.prefs.modword;
+	if (success){
+            this.private.runlevel = 1;
+            this.socket.emit('mod')
+        }else{
+            this.socket.emit('alert','Wrong password. Did you try "Password"?')
+        }
         if (success) this.private.runlevel = 1;
         log.info.log('debug', 'modword', {
             guid: this.guid,
             success: success
         });
 },
+kick:function(data){
+        if(this.private.runlevel<1){
+            this.socket.emit('alert','mod=true')
+            return;
+        }
+        let pu = this.room.getUsersPublic()[data]
+        if(pu&&pu.color){
+            let target;
+            this.room.users.map(n=>{
+                if(n.guid==data){
+                    target = n;
+                }
+            });
+                target.socket.emit("kick",{
+                    reason:"You got kicked."
+                });
+                target.disconnect();
+        }else{
+            this.socket.emit('alert','The user you are trying to kick left. Get dunked on nerd')
+        }
+    },
+	    ban:function(data){
+        if(this.private.runlevel<2){
+            this.socket.emit('alert','admin=true')
+            return;
+        }
+        let pu = this.room.getUsersPublic()[data]
+        if(pu&&pu.color){
+            let target;
+            this.room.users.map(n=>{
+                if(n.guid==data){
+                    target = n;
+                }
+            })
+            if (target.socket.request.connection.remoteAddress == "::1"){
+                Ban.removeBan(target.socket.request.connection.remoteAddress)
+            } else if (target.socket.request.connection.remoteAddress == "::ffff:127.0.0.1"){
+                Ban.removeBan(target.socket.request.connection.remoteAddress)
+            } else {
+
+                target.socket.emit("ban",{
+                    reason:"You got banned."
+                })
+                Ban.addBan(target.socket.request.connection.remoteAddress, 24, "You got banned.");
+            }
+        }else{
+            this.socket.emit('alert','The user you are trying to kick left. Get dunked on nerd')
+        }
+    },
     "sanitize": function() {
         let sanitizeTerms = ["false", "off", "disable", "disabled", "f", "no", "n"];
         let argsString = Utils.argsString(arguments);
