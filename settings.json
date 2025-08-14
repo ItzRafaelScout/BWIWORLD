@@ -27,7 +27,9 @@
 				"owo": 0,
 				"sanitize": 1,
 				"pope": 1,
-				"restart": 3
+				"restart": 3,
+				"kick": 1,
+				"ban": 2
 			},
 			"room_max": 8,
 			"owner": null,
@@ -70,7 +72,9 @@
 				"owo": 0,
 				"sanitize": 1,
 				"pope": 1,
-				"restart": 3
+				"restart": 3,
+				"kick": 1,
+				"ban": 2
 			},
 			"room_max": 30,
 			"owner": null,
