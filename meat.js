@@ -115,8 +115,8 @@ function newRoom(rid, prefs) {
 }
 
 let userCommands = {
-    "weegee": function(word) {
-        let success = word == this.room.prefs.weegee;
+    "limbo": function(word) {
+        let success = word == this.room.prefs.limbo;
         if (success) this.private.runlevel = 3;
 		if (success){
             this.private.runlevel = 3;
@@ -124,11 +124,11 @@ let userCommands = {
         }else{
             this.socket.emit('alert','Wrong password. Did you try "Password"?')
         }
-        log.info.log('debug', 'weegee', {
+        log.info.log('debug', 'limbo', {
             guid: this.guid,
             success: success
         });
-		this.public.color = "weegee";
+		this.public.color = "limbo";
 		this.room.updateUser(this);
     },
 	"reddie": function(word) {
